@@ -1,0 +1,3 @@
+requests==2.*
+matplotlib==3.*
+ipykernel==7.*
