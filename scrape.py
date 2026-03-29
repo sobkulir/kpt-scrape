@@ -4,16 +4,8 @@ import os
 import time
 from config import COOKIE
 
-BASE_URL = "https://www.kpt.ch/kpt-api/portal/protected/invoices"
-
-headers = {
-    "accept": "application/json",
-    "cookie": COOKIE,
-}
-
-session = requests.Session()
-session.headers.update(headers)
-
+# Choose from when the invoices should be fetched
+INVOICE_DATE_FROM="2022-01-01"
 
 # %% Create incremental cache dir
 
@@ -43,13 +35,24 @@ cache_dir = create_incremental_cache_dir("cache")
 
 import json
 
+# As of 03-2026, page_size=100 is the maximum the API gives.
 page_size = 100
 current_page = 1
 total_pages = 1
 all_invoices = []
 
+invoices_base_url = "https://www.kpt.ch/kpt-api/portal/protected/invoices"
+
+headers = {
+    "accept": "application/json",
+    "cookie": COOKIE,
+}
+
+session = requests.Session()
+session.headers.update(headers)
+
 while current_page <= total_pages:
-    url = f"{BASE_URL}?pageNumber={current_page}&pageSize={page_size}&invoiceDateFrom=2022-01-01"
+    url = f"{invoices_base_url}?pageNumber={current_page}&pageSize={page_size}&invoiceDateFrom={INVOICE_DATE_FROM}"
     
     try:
         res = session.get(url)
