@@ -3,6 +3,8 @@
 
 This repository provides an automated Python workflow to scrape health insurance invoice histories directly from the KPT API and save the individual PDFs locally. It also includes a plotting utility to visualize the total monthly insurance costs in a clean, chronological stacked bar chart.
 
+<img width="4200" height="2400" alt="image" src="https://github.com/user-attachments/assets/e7b4a46d-51a8-42d1-b181-5b6a23edb168" />
+
 ## Setup Instructions
 
 1. **Create and Activate a Virtual Environment:**
